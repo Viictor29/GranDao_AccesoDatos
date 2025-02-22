@@ -1,6 +1,8 @@
 package org.example.grandao.dtos;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
@@ -14,13 +16,18 @@ public class Equipo {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @NotNull(message = "El equipo debe tener un nombre")
     @Column(name = "nombre", nullable = false, length = 100)
+    @Pattern(regexp = "^[A-Z][a-zA-Z0-9]*$" , message = "La primera letra del nombre debe ser mayuscula y solo valores alfanumericos")
     private String nombre;
 
     @Column(name = "entrenador", length = 100)
+    @Pattern(regexp = "^[A-Z][a-zA-Z0-9]*$" , message = "La primera letra del nombre del entrenador debe ser mayuscula y solo valores alfanumericos")
     private String entrenador;
 
+    @NotNull(message = "El equipo debe tener fecha de fundacion")
     @Column(name = "fecha_fundacion")
+    @Pattern(regexp = "^[0-9]{4}$" , message = "La fecha de fundación tiene que ser obligatoriamente 4 dígitos")
     private LocalDate fechaFundacion;
 
     @OneToMany(mappedBy = "equipo")

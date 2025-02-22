@@ -1,6 +1,8 @@
 package org.example.grandao.dtos;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -12,6 +14,7 @@ public class Partido {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @NotNull(message = "El partido debe tener fecha")
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
 
@@ -23,10 +26,14 @@ public class Partido {
     @JoinColumn(name = "equipo_visitante_id")
     private Equipo equipoVisitante;
 
+    @NotNull(message = "El partido debe tener goles del equipo local")
     @Column(name = "goles_local")
+    @Min(value = 0, message = "Los goles no pueden ser negativos")
     private Integer golesLocal;
 
+    @NotNull(message = "El partido debe tener goles del equipo visitante")
     @Column(name = "goles_visitante")
+    @Min(value = 0, message = "Los goles no pueden ser negativos")
     private Integer golesVisitante;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -89,4 +96,29 @@ public class Partido {
         this.torneo = torneo;
     }
 
+    public Partido(Integer id, LocalDate fecha, Equipo equipoLocal, Equipo equipoVisitante, Integer golesLocal, Integer golesVisitante, Torneo torneo) {
+        this.id = id;
+        this.fecha = fecha;
+        this.equipoLocal = equipoLocal;
+        this.equipoVisitante = equipoVisitante;
+        this.golesLocal = golesLocal;
+        this.golesVisitante = golesVisitante;
+        this.torneo = torneo;
+    }
+
+    public Partido() {
+    }
+
+    @Override
+    public String toString() {
+        return "Partido{" +
+                "id=" + id +
+                ", fecha=" + fecha +
+                ", equipoLocal=" + equipoLocal +
+                ", equipoVisitante=" + equipoVisitante +
+                ", golesLocal=" + golesLocal +
+                ", golesVisitante=" + golesVisitante +
+                ", torneo=" + torneo +
+                '}';
+    }
 }

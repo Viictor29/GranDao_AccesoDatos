@@ -1,6 +1,7 @@
 package org.example.grandao.dtos;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
@@ -15,6 +16,7 @@ public class Torneo {
     private Integer id;
 
     @Column(name = "nombre", nullable = false, length = 100)
+    @Pattern(regexp = "^[A-Z][a-zA-Z0-9]*$" , message = "La primera letra del torneo debe ser mayuscula y solo valores alfanumericos")
     private String nombre;
 
     @Column(name = "fecha_inicio", nullable = false)
@@ -23,7 +25,9 @@ public class Torneo {
     @Column(name = "fecha_fin", nullable = false)
     private LocalDate fechaFin;
 
+
     @Column(name = "ubicacion", length = 100)
+    @Pattern(regexp = "^[A-Z][a-zA-Z0-9]*$" , message = "La primera letra del torneo debe ser mayuscula y solo valores alfanumericos")
     private String ubicacion;
 
     @OneToMany(mappedBy = "torneo")
@@ -77,4 +81,27 @@ public class Torneo {
         this.partidos = partidos;
     }
 
+    public Torneo(Integer id, String nombre, LocalDate fechaInicio, LocalDate fechaFin, String ubicacion, Set<Partido> partidos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.ubicacion = ubicacion;
+        this.partidos = partidos;
+    }
+
+    public Torneo() {
+    }
+
+    @Override
+    public String toString() {
+        return "Torneo{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaFin=" + fechaFin +
+                ", ubicacion='" + ubicacion + '\'' +
+                ", partidos=" + partidos +
+                '}';
+    }
 }
