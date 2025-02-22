@@ -54,6 +54,7 @@ public class JugadorController {
         }
     }
 
+    //Todo corregir que se modifique ya que se crea
     @PutMapping("/{id}")
     public ResponseEntity<Jugador> updateJugador(@Valid @RequestBody Jugador jugador) {
         try {

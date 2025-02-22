@@ -1,6 +1,7 @@
 package org.example.grandao.dtos;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
@@ -14,11 +15,12 @@ public class Jugador {
 
     @NotNull(message = "El jugador debe tener nombre")
     @Column(name = "nombre", nullable = false, length = 100)
-    @Pattern(regexp = "^[A-Z][a-zA-Z0-9]*$" , message = "La primera letra del nombre del entrenador debe ser mayuscula y solo valores alfanumericos")
+    @Pattern(regexp = "^[A-ZÁÉÍÓÚ][a-záéíóúÁÉÍÓÚa-zA-Z0-9]*(?: [a-záéíóúÁÉÍÓÚa-zA-Z0-9]+)*$" , message = "La primera letra del nombre del entrenador debe ser mayuscula y solo valores alfanumericos")
     private String nombre;
 
     @NotNull(message = "El jugador debe tener edad")
     @Column(name = "edad", nullable = false)
+    @Min(value = 16, message = "La edad minima debe ser 16 años")
     private Integer edad;
 
     @Column(name = "posicion", length = 50)
