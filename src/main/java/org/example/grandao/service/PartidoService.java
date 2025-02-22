@@ -2,13 +2,17 @@ package org.example.grandao.service;
 
 import org.example.grandao.dtos.Partido;
 import org.example.grandao.repository.PartidoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PartidoService {
 
     private final PartidoRepository partidoRepository;
 
+    @Autowired
     public PartidoService(PartidoRepository partidoRepository) {
         this.partidoRepository = partidoRepository;
     }
