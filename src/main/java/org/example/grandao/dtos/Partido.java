@@ -1,5 +1,6 @@
 package org.example.grandao.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -20,10 +21,12 @@ public class Partido {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "equipo_local_id")
+    @JsonIncludeProperties({"id", "nombre"})
     private Equipo equipoLocal;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "equipo_visitante_id")
+    @JsonIncludeProperties({"id", "nombre"})
     private Equipo equipoVisitante;
 
     @NotNull(message = "El partido debe tener goles del equipo local")
@@ -38,6 +41,7 @@ public class Partido {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "torneo_id")
+    @JsonIncludeProperties({"id", "nombre"})
     private Torneo torneo;
 
     public Integer getId() {

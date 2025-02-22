@@ -1,5 +1,6 @@
 package org.example.grandao.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -29,6 +30,7 @@ public class Jugador {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "equipo_id")
+    @JsonIncludeProperties({"id", "nombre"})
     private Equipo equipo;
 
     public Integer getId() {
