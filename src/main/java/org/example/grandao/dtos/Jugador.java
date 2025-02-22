@@ -25,7 +25,7 @@ public class Jugador {
     @Pattern(regexp = "^(Portero|Defensa|Mediocentro|Delantero)$" , message = "La posición solo puede ser Portero, Defensa, Mediocentro y Delantero")
     private String posicion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "equipo_id")
     private Equipo equipo;
 

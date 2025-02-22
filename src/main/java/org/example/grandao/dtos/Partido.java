@@ -18,11 +18,11 @@ public class Partido {
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "equipo_local_id")
     private Equipo equipoLocal;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "equipo_visitante_id")
     private Equipo equipoVisitante;
 
@@ -36,7 +36,7 @@ public class Partido {
     @Min(value = 0, message = "Los goles no pueden ser negativos")
     private Integer golesVisitante;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "torneo_id")
     private Torneo torneo;
 

@@ -30,8 +30,6 @@ public class Torneo {
     @Pattern(regexp = "^[A-Z][a-zA-Z0-9]*$" , message = "La primera letra del torneo debe ser mayuscula y solo valores alfanumericos")
     private String ubicacion;
 
-    @OneToMany(mappedBy = "torneo")
-    private Set<Partido> partidos = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -73,21 +71,13 @@ public class Torneo {
         this.ubicacion = ubicacion;
     }
 
-    public Set<Partido> getPartidos() {
-        return partidos;
-    }
 
-    public void setPartidos(Set<Partido> partidos) {
-        this.partidos = partidos;
-    }
-
-    public Torneo(Integer id, String nombre, LocalDate fechaInicio, LocalDate fechaFin, String ubicacion, Set<Partido> partidos) {
+    public Torneo(Integer id, String nombre, LocalDate fechaInicio, LocalDate fechaFin, String ubicacion) {
         this.id = id;
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.ubicacion = ubicacion;
-        this.partidos = partidos;
     }
 
     public Torneo() {
@@ -101,7 +91,6 @@ public class Torneo {
                 ", fechaInicio=" + fechaInicio +
                 ", fechaFin=" + fechaFin +
                 ", ubicacion='" + ubicacion + '\'' +
-                ", partidos=" + partidos +
                 '}';
     }
 }
