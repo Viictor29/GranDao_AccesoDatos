@@ -43,7 +43,7 @@ public class EquipoController {
         }
     }
 
-    @PostMapping("equipo")
+    @PostMapping("/equipo")
     public ResponseEntity<Equipo> createEquipo(@Valid @RequestBody Equipo equipo) {
         try {
             Equipo equipoPersistido = equipoService.createEquipo(equipo);
@@ -53,6 +53,7 @@ public class EquipoController {
         }
     }
 
+    //Todo corregir que se modifique ya que se crea
     @PutMapping("/{id}")
     public ResponseEntity<Equipo> updateEquipo(@Valid @RequestBody Equipo equipo) {
         try {
