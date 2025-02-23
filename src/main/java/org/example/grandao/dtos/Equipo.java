@@ -19,11 +19,11 @@ public class Equipo {
 
     @NotNull(message = "El equipo debe tener un nombre")
     @Column(name = "nombre", nullable = false, length = 100)
-    @Pattern(regexp = "^[A-ZÁÉÍÓÚ][a-záéíóúÁÉÍÓÚa-zA-Z0-9]*(?: [a-záéíóúÁÉÍÓÚa-zA-Z0-9]+)*$" , message = "La primera letra del nombre debe ser mayuscula y solo valores alfanumericos")
+    @Pattern(regexp = "^[A-ZÁÉÍÓÚÑ][a-záéíóúñÁÉÍÓÚÑA-Za-z0-9]*(?: [a-záéíóúñÁÉÍÓÚÑA-Za-z0-9]+)*$" , message = "La primera letra del nombre debe ser mayuscula y solo valores alfanumericos")
     private String nombre;
 
     @Column(name = "entrenador", length = 100)
-    @Pattern(regexp = "^[A-ZÁÉÍÓÚ][a-záéíóúÁÉÍÓÚa-zA-Z0-9]*(?: [a-záéíóúÁÉÍÓÚa-zA-Z0-9]+)*$" , message = "La primera letra del nombre del entrenador debe ser mayuscula y solo valores alfanumericos")
+    @Pattern(regexp = "^[A-ZÁÉÍÓÚÑ][a-záéíóúñÁÉÍÓÚÑA-Za-z0-9]*(?: [a-záéíóúñÁÉÍÓÚÑA-Za-z0-9]+)*$" , message = "La primera letra del nombre del entrenador debe ser mayuscula y solo valores alfanumericos")
     private String entrenador;
 
     @NotNull(message = "El equipo debe tener fecha de fundacion")

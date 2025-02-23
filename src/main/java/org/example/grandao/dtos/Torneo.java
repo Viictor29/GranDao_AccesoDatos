@@ -27,7 +27,7 @@ public class Torneo {
 
 
     @Column(name = "ubicacion", length = 100)
-    @Pattern(regexp = "^[A-ZÁÉÍÓÚ][a-záéíóúÁÉÍÓÚa-zA-Z0-9]*(?: [a-záéíóúÁÉÍÓÚa-zA-Z0-9]+)*$" , message = "La primera letra del torneo debe ser mayuscula y solo valores alfanumericos")
+    @Pattern(regexp = "^[A-ZÁÉÍÓÚÑ][a-záéíóúñÁÉÍÓÚÑA-Za-z0-9]*(?: [a-záéíóúñÁÉÍÓÚÑA-Za-z0-9]+)*$" , message = "La primera letra del torneo debe ser mayuscula y solo valores alfanumericos")
     private String ubicacion;
 
 
