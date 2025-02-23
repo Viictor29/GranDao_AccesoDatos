@@ -28,8 +28,15 @@ public class TorneoService {
         return torneoRepository.save(torneo);
     }
 
-    public Torneo updateTorneo(Torneo torneo) {
-        return torneoRepository.save(torneo);
+    public Torneo updateTorneo(Integer id, Torneo torneo) {
+        Torneo torneoActualizado = torneoRepository.findById(id).get();
+
+        torneoActualizado.setNombre(torneo.getNombre());
+        torneoActualizado.setFechaInicio(torneo.getFechaInicio());
+        torneoActualizado.setFechaFin(torneo.getFechaFin());
+        torneoActualizado.setUbicacion(torneo.getUbicacion());
+
+        return torneoRepository.save(torneoActualizado);
     }
 
     public void deleteTorneo(int id) {

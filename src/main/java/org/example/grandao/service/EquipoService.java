@@ -29,8 +29,12 @@ public class EquipoService {
         return equipoRepository.save(equipo);
     }
 
-    public Equipo updateEquipo(Equipo equipo) {
-        return equipoRepository.save(equipo);
+    public Equipo updateEquipo(Integer id, Equipo equipo) {
+        Equipo equipoActualizado = equipoRepository.findById(id).orElseThrow(() -> new RuntimeException("No se encontro el equipo con id: " + id));
+        equipoActualizado.setNombre(equipo.getNombre());
+        equipoActualizado.setEntrenador(equipo.getEntrenador());
+        equipoActualizado.setFechaFundacion(equipo.getFechaFundacion());
+        return equipoRepository.save(equipoActualizado);
     }
 
     public void deleteEquipo(int id) {
