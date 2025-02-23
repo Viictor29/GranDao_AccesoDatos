@@ -45,23 +45,15 @@ public class EquipoController {
 
     @PostMapping("/equipo")
     public ResponseEntity<Equipo> createEquipo(@Valid @RequestBody Equipo equipo) {
-        try {
-            Equipo equipoPersistido = equipoService.createEquipo(equipo);
-            return ResponseEntity.status(HttpStatus.CREATED).body(equipoPersistido);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
+        Equipo equipoPersistido = equipoService.createEquipo(equipo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(equipoPersistido);
     }
 
 
     @PutMapping("/{id}")
     public ResponseEntity<Equipo> updateEquipo(@PathVariable Integer id, @Valid @RequestBody Equipo equipo) {
-        try {
-            Equipo equipoModificado = equipoService.updateEquipo(id, equipo);
-            return ResponseEntity.ok(equipoModificado);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
+        Equipo equipoModificado = equipoService.updateEquipo(id, equipo);
+        return ResponseEntity.ok(equipoModificado);
     }
 
     @DeleteMapping("/{id}")

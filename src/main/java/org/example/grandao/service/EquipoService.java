@@ -5,6 +5,7 @@ import org.example.grandao.repository.EquipoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -26,10 +27,22 @@ public class EquipoService {
     }
 
     public Equipo createEquipo(Equipo equipo) {
+        LocalDate fechaActual = LocalDate.now();
+
+        if(equipo.getFechaFundacion().isAfter(fechaActual)) {
+            throw new IllegalArgumentException("La fecha de fundación debe ser anterior a la fecha actual");
+        }
+
         return equipoRepository.save(equipo);
     }
 
     public Equipo updateEquipo(Integer id, Equipo equipo) {
+        LocalDate fechaActual = LocalDate.now();
+
+        if(equipo.getFechaFundacion().isAfter(fechaActual)) {
+            throw new IllegalArgumentException("La fecha de fundación debe ser anterior a la fecha actual");
+        }
+
         Equipo equipoActualizado = equipoRepository.findById(id).orElseThrow(() -> new RuntimeException("No se encontro el equipo con id: " + id));
         equipoActualizado.setNombre(equipo.getNombre());
         equipoActualizado.setEntrenador(equipo.getEntrenador());
