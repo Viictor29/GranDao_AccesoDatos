@@ -20,11 +20,11 @@ public class PartidoMongoDB {
 
     @DBRef
     @Field("equipo_local")
-    private Equipo equipoLocal;
+    private EquipoMongoDB equipoLocal;
 
     @DBRef
     @Field("equipo_visitante")
-    private Equipo equipoVisitante;
+    private EquipoMongoDB equipoVisitante;
 
     @NotNull(message = "El partido debe tener goles del equipo local")
     @Field("goles_local")
@@ -38,7 +38,7 @@ public class PartidoMongoDB {
 
     @DBRef
     @Field("torneo")
-    private Torneo torneo;
+    private TorneoMongoDB torneo;
 
     public String getId() {
         return id;
@@ -56,21 +56,6 @@ public class PartidoMongoDB {
         this.fecha = fecha;
     }
 
-    public Equipo getEquipoLocal() {
-        return equipoLocal;
-    }
-
-    public void setEquipoLocal(Equipo equipoLocal) {
-        this.equipoLocal = equipoLocal;
-    }
-
-    public Equipo getEquipoVisitante() {
-        return equipoVisitante;
-    }
-
-    public void setEquipoVisitante(Equipo equipoVisitante) {
-        this.equipoVisitante = equipoVisitante;
-    }
 
     public Integer getGolesLocal() {
         return golesLocal;
@@ -88,15 +73,31 @@ public class PartidoMongoDB {
         this.golesVisitante = golesVisitante;
     }
 
-    public Torneo getTorneo() {
+    public TorneoMongoDB getTorneo() {
         return torneo;
     }
 
-    public void setTorneo(Torneo torneo) {
+    public void setTorneo(TorneoMongoDB torneo) {
         this.torneo = torneo;
     }
 
-    public PartidoMongoDB(String id, LocalDate fecha, Equipo equipoLocal, Equipo equipoVisitante, Integer golesLocal, Integer golesVisitante, Torneo torneo) {
+    public EquipoMongoDB getEquipoLocal() {
+        return equipoLocal;
+    }
+
+    public void setEquipoLocal(EquipoMongoDB equipoLocal) {
+        this.equipoLocal = equipoLocal;
+    }
+
+    public EquipoMongoDB getEquipoVisitante() {
+        return equipoVisitante;
+    }
+
+    public void setEquipoVisitante(EquipoMongoDB equipoVisitante) {
+        this.equipoVisitante = equipoVisitante;
+    }
+
+    public PartidoMongoDB(String id, LocalDate fecha, EquipoMongoDB equipoLocal, EquipoMongoDB equipoVisitante, Integer golesLocal, Integer golesVisitante, TorneoMongoDB torneo) {
         this.id = id;
         this.fecha = fecha;
         this.equipoLocal = equipoLocal;

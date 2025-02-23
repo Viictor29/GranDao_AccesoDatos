@@ -30,7 +30,7 @@ public class JugadorMongoDB {
 
     @DBRef  // MongoDB usa referencias con @DBRef para establecer relaciones
     @Field("equipo")
-    private Equipo equipo;
+    private EquipoMongoDB equipo;
 
     public String getId() {
         return id;
@@ -64,15 +64,15 @@ public class JugadorMongoDB {
         this.posicion = posicion;
     }
 
-    public Equipo getEquipo() {
+    public EquipoMongoDB getEquipo() {
         return equipo;
     }
 
-    public void setEquipo(Equipo equipo) {
+    public void setEquipo(EquipoMongoDB equipo) {
         this.equipo = equipo;
     }
 
-    public JugadorMongoDB(String id, String nombre, Integer edad, String posicion, Equipo equipo) {
+    public JugadorMongoDB(String id, String nombre, Integer edad, String posicion, EquipoMongoDB equipo) {
         this.id = id;
         this.nombre = nombre;
         this.edad = edad;
