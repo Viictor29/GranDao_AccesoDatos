@@ -34,11 +34,21 @@ public class PartidoService {
     }
 
     public Partido createPartido(Partido partido) {
-        return partidoRepository.save(partido);
+        Torneo torneo = torneoRepository.findById(partido.getTorneo().getId()).orElseThrow(()-> new IllegalArgumentException("No existe torneo"));
+
+        if (partido.getFecha().isBefore(torneo.getFechaInicio()) || partido.getFecha().isAfter(torneo.getFechaFin())){
+            throw new IllegalArgumentException("La fecha del partido debe estar entre la fecha de inicio y fin del torneo");
+        }
+            return partidoRepository.save(partido);
     }
 
     public Partido updatePartido(Integer id, Partido partido) {
         Partido partidoActualizado = partidoRepository.findById(id).get();
+        Torneo torneo = torneoRepository.findById(partido.getTorneo().getId()).orElseThrow(()-> new IllegalArgumentException("No existe torneo con el id " + id));
+
+        if (partido.getFecha().isBefore(torneo.getFechaInicio()) || partido.getFecha().isAfter(torneo.getFechaFin())){
+            throw new IllegalArgumentException("La fecha del partido debe estar entre la fecha de inicio y fin del torneo");
+        }
 
         partidoActualizado.setFecha(partido.getFecha());
         partidoActualizado.setGolesLocal(partido.getGolesLocal());
@@ -50,7 +60,7 @@ public class PartidoService {
         partidoActualizado.setEquipoLocal(equipoLocal);
         partidoActualizado.setEquipoVisitante(equipoVisitante);
 
-        Torneo torneo = torneoRepository.findById(partido.getTorneo().getId()).get();
+
         partidoActualizado.setTorneo(torneo);
 
         return partidoRepository.save(partidoActualizado);
