@@ -47,9 +47,9 @@ public class PartidoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Partido> updatePartido(@Valid @RequestBody Partido partido) {
+    public ResponseEntity<Partido> updatePartido(@PathVariable Integer id, @Valid @RequestBody Partido partido) {
         try {
-            return ResponseEntity.ok(partidoService.updatePartido(partido));
+            return ResponseEntity.ok(partidoService.updatePartido(id, partido));
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

@@ -53,11 +53,11 @@ public class EquipoController {
         }
     }
 
-    //Todo corregir que se modifique ya que se crea
+
     @PutMapping("/{id}")
-    public ResponseEntity<Equipo> updateEquipo(@Valid @RequestBody Equipo equipo) {
+    public ResponseEntity<Equipo> updateEquipo(@PathVariable Integer id, @Valid @RequestBody Equipo equipo) {
         try {
-            Equipo equipoModificado = equipoService.updateEquipo(equipo);
+            Equipo equipoModificado = equipoService.updateEquipo(id, equipo);
             return ResponseEntity.ok(equipoModificado);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);

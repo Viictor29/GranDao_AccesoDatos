@@ -54,11 +54,11 @@ public class JugadorController {
         }
     }
 
-    //Todo corregir que se modifique ya que se crea
+
     @PutMapping("/{id}")
-    public ResponseEntity<Jugador> updateJugador(@Valid @RequestBody Jugador jugador) {
+    public ResponseEntity<Jugador> updateJugador(@PathVariable Integer id , @Valid @RequestBody Jugador jugador) {
         try {
-            Jugador jugadorModificado = jugadorService.updateJugador(jugador);
+            Jugador jugadorModificado = jugadorService.updateJugador(id, jugador);
             return ResponseEntity.ok(jugadorModificado);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);

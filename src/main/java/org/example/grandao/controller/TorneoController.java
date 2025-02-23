@@ -48,9 +48,9 @@ public class TorneoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Torneo> updateTorneo(@Valid @RequestBody Torneo torneo) {
+    public ResponseEntity<Torneo> updateTorneo(@PathVariable Integer id, @Valid @RequestBody Torneo torneo) {
         try {
-            return ResponseEntity.ok(torneoService.updateTorneo(torneo));
+            return ResponseEntity.ok(torneoService.updateTorneo(id, torneo));
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
