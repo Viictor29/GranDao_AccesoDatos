@@ -13,11 +13,20 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * The type Global exception handler.
+ */
 @ControllerAdvice
 
 public class GlobalExceptionHandler {
 
-    //Mensaje para las IlegalArgumenException
+    /**
+     * Handle illegal argument exception response entity.
+     *
+     * @param ex the ex
+     * @return the response entity
+     */
+//Mensaje para las IlegalArgumenException
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
