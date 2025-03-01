@@ -1,12 +1,14 @@
 package org.example.grandao.dtos;
 
-import jakarta.xml.bind.annotation.XmlElement;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
  * The type Coches list.
  */
+@XmlRootElement(name = "coches")
 public class CochesList {
 
     private List<Coche> coches;

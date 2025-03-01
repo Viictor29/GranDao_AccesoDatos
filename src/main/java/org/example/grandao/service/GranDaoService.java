@@ -1,7 +1,6 @@
 package org.example.grandao.service;
 
 import jakarta.validation.Valid;
-import jakarta.xml.bind.JAXBException;
 import org.example.grandao.daos.CocheXML;
 import org.example.grandao.dtos.*;
 import org.example.grandao.repository.*;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.JAXBException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -280,13 +280,8 @@ public class GranDaoService {
 
     // ****************** COCHES XML ******************
 
-    public List<Coche> getCoches() {
-        try {
-            return cocheRepository.leerCoches();
-        } catch (JAXBException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
+    public List<Coche> getCoches() throws JAXBException{
+        return cocheRepository.leerCoches();
     }
 
     public Coche obtenerCocheByMatricula(String matricula) throws JAXBException {

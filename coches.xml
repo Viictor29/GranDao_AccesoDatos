@@ -1,27 +1,33 @@
-<cochesList>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<coches>
     <coche>
-        <matricula>1234-ABC</matricula>
         <marca>Toyota</marca>
+        <matricula>1234-ABC</matricula>
         <modelo>Corolla</modelo>
     </coche>
     <coche>
-        <matricula>5678-DEF</matricula>
         <marca>Ford</marca>
+        <matricula>5678-DEF</matricula>
         <modelo>Focus</modelo>
     </coche>
     <coche>
-        <matricula>9101-GHI</matricula>
         <marca>BMW</marca>
+        <matricula>9101-GHI</matricula>
         <modelo>Serie 3</modelo>
     </coche>
     <coche>
-        <matricula>1121-JKL</matricula>
         <marca>Audi</marca>
+        <matricula>1121-JKL</matricula>
         <modelo>A4</modelo>
     </coche>
     <coche>
-        <matricula>3141-MNO</matricula>
         <marca>Mercedes</marca>
+        <matricula>3141-MNO</matricula>
         <modelo>Clase C</modelo>
     </coche>
-</cochesList>
+    <coche>
+        <marca>Ford</marca>
+        <matricula>8710-FBP</matricula>
+        <modelo>Focus</modelo>
+    </coche>
+</coches>

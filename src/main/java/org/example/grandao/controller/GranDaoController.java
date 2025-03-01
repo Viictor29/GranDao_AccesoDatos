@@ -1,7 +1,6 @@
 package org.example.grandao.controller;
 
 import jakarta.validation.Valid;
-import jakarta.xml.bind.JAXBException;
 import org.example.grandao.dtos.*;
 import org.example.grandao.service.GranDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import javax.xml.bind.JAXBException;
 
 import java.util.List;
 
@@ -262,14 +262,15 @@ public class GranDaoController {
 // ****************** COCHES XML******************
 
 
-    @GetMapping("/getCoches")
-    public ResponseEntity<List<Coche>> getCoches() throws JAXBException {
-        return ResponseEntity.ok(granDaoService.getCoches());
+    @GetMapping("/coches")
+    public ResponseEntity<CochesList> getCoches() throws JAXBException {
+        List<Coche> coches = granDaoService.getCoches();  // Obtienes la lista de coches
+        CochesList cochesList = new CochesList(coches);  // La envuelves en un CochesList
+        return ResponseEntity.ok(cochesList);  // Devuelves el objeto CochesList
     }
 
     //GET COCHE BY MATRICULA
-    @GetMapping("/getCocheByMatricula/{matricula}")
-    @Cacheable
+    @GetMapping("/coches/{matricula}")
     public ResponseEntity<Coche> getCocheByMatricula(@PathVariable String matricula) throws JAXBException {
         // Llama al Service para obtener el coche por su matrícula
         Coche coche = granDaoService.obtenerCocheByMatricula(matricula);
@@ -280,7 +281,7 @@ public class GranDaoController {
         }
     }
 
-    @PostMapping("/postCoche")
+    @PostMapping("/coches")
     public ResponseEntity<Coche> postCoche(@RequestBody @Valid Coche coche) throws JAXBException {
         granDaoService.guardarCoche(coche);
         return ResponseEntity.status(HttpStatus.CREATED).body(coche);
