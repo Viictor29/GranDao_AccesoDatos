@@ -1,0 +1,27 @@
+<cochesList>
+    <coche>
+        <matricula>1234-ABC</matricula>
+        <marca>Toyota</marca>
+        <modelo>Corolla</modelo>
+    </coche>
+    <coche>
+        <matricula>5678-DEF</matricula>
+        <marca>Ford</marca>
+        <modelo>Focus</modelo>
+    </coche>
+    <coche>
+        <matricula>9101-GHI</matricula>
+        <marca>BMW</marca>
+        <modelo>Serie 3</modelo>
+    </coche>
+    <coche>
+        <matricula>1121-JKL</matricula>
+        <marca>Audi</marca>
+        <modelo>A4</modelo>
+    </coche>
+    <coche>
+        <matricula>3141-MNO</matricula>
+        <marca>Mercedes</marca>
+        <modelo>Clase C</modelo>
+    </coche>
+</cochesList>
