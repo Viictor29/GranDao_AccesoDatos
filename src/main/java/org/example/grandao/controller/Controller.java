@@ -1,0 +1,262 @@
+package org.example.grandao.controller;
+
+import jakarta.validation.Valid;
+import org.example.grandao.dtos.Equipo;
+import org.example.grandao.dtos.Jugador;
+import org.example.grandao.dtos.Partido;
+import org.example.grandao.dtos.Torneo;
+import org.example.grandao.service.GranDaoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+/**
+ * Controlador global de la API.
+ */
+@RestController
+@RequestMapping("/api")
+public class Controller {
+
+    private final GranDaoService granDaoService;
+
+    /**
+     * Instantiates a new Controller.
+     *
+     * @param granDaoService the gran dao service
+     */
+    @Autowired
+    public Controller(GranDaoService granDaoService) {
+        this.granDaoService = granDaoService;
+    }
+
+    /**
+     * Gets equipos.
+     *
+     * @return the equipos
+     */
+// ****************** EQUIPOS ******************
+    @GetMapping("/equipos")
+    public ResponseEntity<List<Equipo>> getEquipos() {
+        return ResponseEntity.ok(granDaoService.getEquipos());
+    }
+
+    /**
+     * Gets equipo by id.
+     *
+     * @param id the id
+     * @return the equipo by id
+     */
+    @GetMapping("/equipos/{id}")
+    public ResponseEntity<Equipo> getEquipoById(@PathVariable Integer id) {
+        return ResponseEntity.ok(granDaoService.getEquipoById(id));
+    }
+
+    /**
+     * Create equipo response entity.
+     *
+     * @param equipo the equipo
+     * @return the response entity
+     */
+    @PostMapping("/equipos")
+    public ResponseEntity<Equipo> createEquipo(@Valid @RequestBody Equipo equipo) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(granDaoService.createEquipo(equipo));
+    }
+
+    /**
+     * Update equipo response entity.
+     *
+     * @param id     the id
+     * @param equipo the equipo
+     * @return the response entity
+     */
+    @PutMapping("/equipos/{id}")
+    public ResponseEntity<Equipo> updateEquipo(@PathVariable Integer id, @Valid @RequestBody Equipo equipo) {
+        return ResponseEntity.ok(granDaoService.updateEquipo(id, equipo));
+    }
+
+    /**
+     * Delete equipo response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
+    @DeleteMapping("/equipos/{id}")
+    public ResponseEntity<Void> deleteEquipo(@PathVariable Integer id) {
+        granDaoService.deleteEquipo(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Gets jugadores.
+     *
+     * @return the jugadores
+     */
+// ****************** JUGADORES ******************
+    @GetMapping("/jugadores")
+    public ResponseEntity<List<Jugador>> getJugadores() {
+        return ResponseEntity.ok(granDaoService.getJugadores());
+    }
+
+    /**
+     * Gets jugador by id.
+     *
+     * @param id the id
+     * @return the jugador by id
+     */
+    @GetMapping("/jugadores/{id}")
+    public ResponseEntity<Jugador> getJugadorById(@PathVariable Integer id) {
+        return ResponseEntity.ok(granDaoService.getJugadorById(id));
+    }
+
+    /**
+     * Create jugador response entity.
+     *
+     * @param jugador the jugador
+     * @return the response entity
+     */
+    @PostMapping("/jugadores")
+    public ResponseEntity<Jugador> createJugador(@Valid @RequestBody Jugador jugador) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(granDaoService.createJugador(jugador));
+    }
+
+    /**
+     * Update jugador response entity.
+     *
+     * @param id      the id
+     * @param jugador the jugador
+     * @return the response entity
+     */
+    @PutMapping("/jugadores/{id}")
+    public ResponseEntity<Jugador> updateJugador(@PathVariable Integer id, @Valid @RequestBody Jugador jugador) {
+        return ResponseEntity.ok(granDaoService.updateJugador(id, jugador));
+    }
+
+    /**
+     * Delete jugador response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
+    @DeleteMapping("/jugadores/{id}")
+    public ResponseEntity<Void> deleteJugador(@PathVariable Integer id) {
+        granDaoService.deleteJugador(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Gets partidos.
+     *
+     * @return the partidos
+     */
+// ****************** PARTIDOS ******************
+    @GetMapping("/partidos")
+    public ResponseEntity<List<Partido>> getPartidos() {
+        return ResponseEntity.ok(granDaoService.getPartidos());
+    }
+
+    /**
+     * Gets partido by id.
+     *
+     * @param id the id
+     * @return the partido by id
+     */
+    @GetMapping("/partidos/{id}")
+    public ResponseEntity<Partido> getPartidoById(@PathVariable Integer id) {
+        return ResponseEntity.ok(granDaoService.getPartidoById(id));
+    }
+
+    /**
+     * Create partido response entity.
+     *
+     * @param partido the partido
+     * @return the response entity
+     */
+    @PostMapping("/partidos")
+    public ResponseEntity<Partido> createPartido(@Valid @RequestBody Partido partido) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(granDaoService.createPartido(partido));
+    }
+
+    /**
+     * Update partido response entity.
+     *
+     * @param id      the id
+     * @param partido the partido
+     * @return the response entity
+     */
+    @PutMapping("/partidos/{id}")
+    public ResponseEntity<Partido> updatePartido(@PathVariable Integer id, @Valid @RequestBody Partido partido) {
+        return ResponseEntity.ok(granDaoService.updatePartido(id, partido));
+    }
+
+    /**
+     * Delete partido response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
+    @DeleteMapping("/partidos/{id}")
+    public ResponseEntity<Void> deletePartido(@PathVariable Integer id) {
+        granDaoService.deletePartido(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    /**
+     * Gets torneos.
+     *
+     * @return the torneos
+     */
+// ****************** TORNEOS ******************
+    @GetMapping("/torneos")
+    public ResponseEntity<List<Torneo>> getTorneos() {
+        return ResponseEntity.ok(granDaoService.getTorneos());
+    }
+
+    /**
+     * Gets torneo by id.
+     *
+     * @param id the id
+     * @return the torneo by id
+     */
+    @GetMapping("/torneos/{id}")
+    public ResponseEntity<Torneo> getTorneoById(@PathVariable Integer id) {
+        return ResponseEntity.ok(granDaoService.getTorneoById(id));
+    }
+
+    /**
+     * Create torneo response entity.
+     *
+     * @param torneo the torneo
+     * @return the response entity
+     */
+    @PostMapping("/torneos")
+    public ResponseEntity<Torneo> createTorneo(@Valid @RequestBody Torneo torneo) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(granDaoService.createTorneo(torneo));
+    }
+
+    /**
+     * Update torneo response entity.
+     *
+     * @param id id del torneo
+     * @param torneo el torneo
+     * @return the response entity
+     */
+    @PutMapping("/torneos/{id}")
+    public ResponseEntity<Torneo> updateaTorneo(@PathVariable Integer id, @Valid @RequestBody Torneo torneo) {
+        return ResponseEntity.ok(granDaoService.updateTorneo(id, torneo));
+    }
+
+    /**
+     * Delete torneo response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
+    @DeleteMapping("/torneos/{id}")
+    public ResponseEntity<Void> deleteTorneo(@PathVariable Integer id) {
+        granDaoService.deleteTorneo(id);
+        return ResponseEntity.noContent().build();
+    }
+}
