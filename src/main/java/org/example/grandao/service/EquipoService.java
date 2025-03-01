@@ -9,25 +9,55 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * The type Equipo service.
+ *
+ * @deprecated
+ */
 @Service
 @CacheConfig(cacheNames = {"equipo"})
 public class EquipoService {
 
+    /**
+     * The Equipo repository.
+     */
     EquipoRepository equipoRepository;
 
+    /**
+     * Instantiates a new Equipo service.
+     *
+     * @param equipoRepository the equipo repository
+     */
     @Autowired
     public EquipoService(EquipoRepository equipoRepository) {
         this.equipoRepository = equipoRepository;
     }
 
+    /**
+     * Gets equipos.
+     *
+     * @return the equipos
+     */
     public List<Equipo> getEquipos() {
         return equipoRepository.findAll();
     }
 
+    /**
+     * Gets equipo by id.
+     *
+     * @param id the id
+     * @return the equipo by id
+     */
     public Equipo getEquipoById(int id) {
         return equipoRepository.findById(id).get();
     }
 
+    /**
+     * Create equipo equipo.
+     *
+     * @param equipo the equipo
+     * @return the equipo
+     */
     public Equipo createEquipo(Equipo equipo) {
         LocalDate fechaActual = LocalDate.now();
 
@@ -38,6 +68,13 @@ public class EquipoService {
         return equipoRepository.save(equipo);
     }
 
+    /**
+     * Update equipo equipo.
+     *
+     * @param id     the id
+     * @param equipo the equipo
+     * @return the equipo
+     */
     public Equipo updateEquipo(Integer id, Equipo equipo) {
         LocalDate fechaActual = LocalDate.now();
 
@@ -52,6 +89,11 @@ public class EquipoService {
         return equipoRepository.save(equipoActualizado);
     }
 
+    /**
+     * Delete equipo.
+     *
+     * @param id the id
+     */
     public void deleteEquipo(int id) {
         equipoRepository.deleteById(id);
     }

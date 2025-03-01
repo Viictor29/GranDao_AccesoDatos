@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * The type Partido service.
+ *
+ * @deprecated
+ */
 @Service
 public class PartidoService {
 
@@ -18,6 +23,13 @@ public class PartidoService {
     private final EquipoRepository equipoRepository;
     private final TorneoRepository torneoRepository;
 
+    /**
+     * Instantiates a new Partido service.
+     *
+     * @param partidoRepository the partido repository
+     * @param equipoRepository  the equipo repository
+     * @param torneoRepository  the torneo repository
+     */
     @Autowired
     public PartidoService(PartidoRepository partidoRepository, EquipoRepository equipoRepository, TorneoRepository torneoRepository) {
         this.partidoRepository = partidoRepository;
@@ -25,14 +37,31 @@ public class PartidoService {
         this.torneoRepository = torneoRepository;
     }
 
+    /**
+     * Gets partidos.
+     *
+     * @return the partidos
+     */
     public List<Partido> getPartidos() {
         return partidoRepository.findAll();
     }
 
+    /**
+     * Gets partido by id.
+     *
+     * @param id the id
+     * @return the partido by id
+     */
     public Partido getPartidoById(int id) {
         return partidoRepository.findById(id).get();
     }
 
+    /**
+     * Create partido partido.
+     *
+     * @param partido the partido
+     * @return the partido
+     */
     public Partido createPartido(Partido partido) {
         Torneo torneo = torneoRepository.findById(partido.getTorneo().getId()).orElseThrow(()-> new IllegalArgumentException("No existe torneo"));
 
@@ -42,6 +71,13 @@ public class PartidoService {
             return partidoRepository.save(partido);
     }
 
+    /**
+     * Update partido partido.
+     *
+     * @param id      the id
+     * @param partido the partido
+     * @return the partido
+     */
     public Partido updatePartido(Integer id, Partido partido) {
         Partido partidoActualizado = partidoRepository.findById(id).get();
         Torneo torneo = torneoRepository.findById(partido.getTorneo().getId()).orElseThrow(()-> new IllegalArgumentException("No existe torneo con el id " + id));
@@ -66,6 +102,11 @@ public class PartidoService {
         return partidoRepository.save(partidoActualizado);
     }
 
+    /**
+     * Delete partido.
+     *
+     * @param id the id
+     */
     public void deletePartido(int id) {
         partidoRepository.deleteById(id);
     }
