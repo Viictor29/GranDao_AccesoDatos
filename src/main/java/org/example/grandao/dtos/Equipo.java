@@ -9,6 +9,9 @@ import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * The type Equipo.
+ */
 @Entity
 @Table(name = "equipo")
 public class Equipo {
@@ -31,39 +34,87 @@ public class Equipo {
     private LocalDate fechaFundacion;
 
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Gets nombre.
+     *
+     * @return the nombre
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Sets nombre.
+     *
+     * @param nombre the nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Gets entrenador.
+     *
+     * @return the entrenador
+     */
     public String getEntrenador() {
         return entrenador;
     }
 
+    /**
+     * Sets entrenador.
+     *
+     * @param entrenador the entrenador
+     */
     public void setEntrenador(String entrenador) {
         this.entrenador = entrenador;
     }
 
+    /**
+     * Gets fecha fundacion.
+     *
+     * @return the fecha fundacion
+     */
     public LocalDate getFechaFundacion() {
         return fechaFundacion;
     }
 
+    /**
+     * Sets fecha fundacion.
+     *
+     * @param fechaFundacion the fecha fundacion
+     */
     public void setFechaFundacion(LocalDate fechaFundacion) {
         this.fechaFundacion = fechaFundacion;
     }
 
 
+    /**
+     * Instantiates a new Equipo.
+     *
+     * @param id             the id
+     * @param nombre         the nombre
+     * @param entrenador     the entrenador
+     * @param fechaFundacion the fecha fundacion
+     */
     public Equipo(Integer id, String nombre, String entrenador, LocalDate fechaFundacion) {
         this.id = id;
         this.nombre = nombre;
@@ -71,6 +122,9 @@ public class Equipo {
         this.fechaFundacion = fechaFundacion;
     }
 
+    /**
+     * Instantiates a new Equipo.
+     */
     public Equipo() {
     }
 

@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * The type Torneo.
+ */
 @Entity
 @Table(name = "torneo")
 public class Torneo {
@@ -31,47 +34,106 @@ public class Torneo {
     private String ubicacion;
 
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * Gets nombre.
+     *
+     * @return the nombre
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Sets nombre.
+     *
+     * @param nombre the nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Gets fecha inicio.
+     *
+     * @return the fecha inicio
+     */
     public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
+    /**
+     * Sets fecha inicio.
+     *
+     * @param fechaInicio the fecha inicio
+     */
     public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
+    /**
+     * Gets fecha fin.
+     *
+     * @return the fecha fin
+     */
     public LocalDate getFechaFin() {
         return fechaFin;
     }
 
+    /**
+     * Sets fecha fin.
+     *
+     * @param fechaFin the fecha fin
+     */
     public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 
+    /**
+     * Gets ubicacion.
+     *
+     * @return the ubicacion
+     */
     public String getUbicacion() {
         return ubicacion;
     }
 
+    /**
+     * Sets ubicacion.
+     *
+     * @param ubicacion the ubicacion
+     */
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
 
 
+    /**
+     * Instantiates a new Torneo.
+     *
+     * @param id          the id
+     * @param nombre      the nombre
+     * @param fechaInicio the fecha inicio
+     * @param fechaFin    the fecha fin
+     * @param ubicacion   the ubicacion
+     */
     public Torneo(Integer id, String nombre, LocalDate fechaInicio, LocalDate fechaFin, String ubicacion) {
         this.id = id;
         this.nombre = nombre;
@@ -80,6 +142,9 @@ public class Torneo {
         this.ubicacion = ubicacion;
     }
 
+    /**
+     * Instantiates a new Torneo.
+     */
     public Torneo() {
     }
 
