@@ -18,7 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api")
-public class Controller {
+public class GranDaoController {
 
     private final GranDaoService granDaoService;
 
@@ -28,7 +28,7 @@ public class Controller {
      * @param granDaoService the gran dao service
      */
     @Autowired
-    public Controller(GranDaoService granDaoService) {
+    public GranDaoController(GranDaoService granDaoService) {
         this.granDaoService = granDaoService;
     }
 
