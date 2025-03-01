@@ -1,5 +1,8 @@
 package org.example.grandao.service;
 
+import jakarta.validation.Valid;
+import jakarta.xml.bind.JAXBException;
+import org.example.grandao.daos.CocheXML;
 import org.example.grandao.dtos.*;
 import org.example.grandao.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +24,7 @@ public class GranDaoService {
     private final JugadorRepository jugadorRepository;
     private final PartidoRepository partidoRepository;
     private final TorneoRepository torneoRepository;
+    private final CocheXML cocheRepository;
 
     /**
      * Instantiates a new Gran dao service.
@@ -31,11 +36,12 @@ public class GranDaoService {
      */
     @Autowired
     public GranDaoService(EquipoRepository equipoRepository, JugadorRepository jugadorRepository,
-                          PartidoRepository partidoRepository, TorneoRepository torneoRepository) {
+                          PartidoRepository partidoRepository, TorneoRepository torneoRepository, CocheXML cocheRepository) {
         this.equipoRepository = equipoRepository;
         this.jugadorRepository = jugadorRepository;
         this.partidoRepository = partidoRepository;
         this.torneoRepository = torneoRepository;
+        this.cocheRepository = cocheRepository;
     }
 
     /**
@@ -43,7 +49,7 @@ public class GranDaoService {
      *
      * @return the equipos
      */
-// ****************** EQUIPOS ******************
+// ****************** EQUIPOS SQL ******************
     public List<Equipo> getEquipos() {
         return equipoRepository.findAll();
     }
@@ -100,7 +106,7 @@ public class GranDaoService {
      *
      * @return the jugadores
      */
-// ****************** JUGADORES ******************
+// ****************** JUGADORES SQL ******************
     public List<Jugador> getJugadores() {
         return jugadorRepository.findAll();
     }
@@ -155,7 +161,7 @@ public class GranDaoService {
      *
      * @return the partidos
      */
-// ****************** PARTIDOS ******************
+// ****************** PARTIDOS SQL ******************
     public List<Partido> getPartidos() {
         return partidoRepository.findAll();
     }
@@ -222,7 +228,7 @@ public class GranDaoService {
      *
      * @return the torneos
      */
-// ****************** TORNEOS ******************
+// ****************** TORNEOS SQL ******************
     public List<Torneo> getTorneos() {
         return torneoRepository.findAll();
     }
@@ -271,4 +277,50 @@ public class GranDaoService {
     public void deleteTorneo(int id) {
         torneoRepository.deleteById(id);
     }
+
+    // ****************** COCHES XML ******************
+
+    public List<Coche> obtenerCoches() {
+        try {
+            return cocheRepository.leerCoches();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    public Coche obtenerCocheByMarca(String marca) throws JAXBException {
+        List<Coche> listaCoches = cocheRepository.leerCochesPorMarca(marca);
+
+        for (Coche coche : listaCoches) {
+            if (coche.getMarca().equals(marca)) {
+                return coche;
+            }
+        }
+        return null;
+    }
+
+    public Coche obtenerCocheByModelo(String modelo) throws JAXBException {
+        List<Coche> listaCoches = cocheRepository.leerCochesPorModelo(modelo);
+
+        for (Coche coche : listaCoches) {
+            if (coche.getMarca().equals(modelo)) {
+                return coche;
+            }
+        }
+        return null;
+    }
+
+
+    public void guardarCoche(@Valid Coche coche) throws JAXBException {
+        List<Coche> coches = obtenerCoches();
+        if (coches == null) {
+            coches = new ArrayList<>();
+        }
+        coches.add(coche);  // Agrega el coche
+        cocheRepository.guardarCoches(coches);  // Guarda la lista actualizada
+    }
+
+
+
 }
