@@ -261,7 +261,6 @@ public class GranDaoController {
 
 // ****************** COCHES XML******************
 
-
     @GetMapping("/coches")
     public ResponseEntity<CochesList> getCoches() throws JAXBException {
         List<Coche> coches = granDaoService.getCoches();  // Obtienes la lista de coches
@@ -287,5 +286,24 @@ public class GranDaoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(coche);
     }
 
+// ****************** PRODUCTOS TXT******************
+
+    @GetMapping("/productos")
+    public ResponseEntity<List<Producto>> getProductos() {
+        return ResponseEntity.ok(granDaoService.obtenerTodos());
+    }
+
+
+    @GetMapping("/productos/{id}")
+    public ResponseEntity<Producto> getProductoById(@PathVariable int id) {
+        Producto producto = granDaoService.obtenerPorId(id);
+        return producto != null ? ResponseEntity.ok(producto) : ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/productos")
+    public ResponseEntity<String> crearProducto(@RequestBody Producto producto) {
+        granDaoService.agregarProducto(producto);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Producto guardado correctamente.");
+    }
 
 }
