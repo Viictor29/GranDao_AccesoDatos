@@ -280,7 +280,7 @@ public class GranDaoService {
 
     // ****************** COCHES XML ******************
 
-    public List<Coche> obtenerCoches() {
+    public List<Coche> getCoches() {
         try {
             return cocheRepository.leerCoches();
         } catch (JAXBException e) {
@@ -289,31 +289,19 @@ public class GranDaoService {
         }
     }
 
-    public Coche obtenerCocheByMarca(String marca) throws JAXBException {
-        List<Coche> listaCoches = cocheRepository.leerCochesPorMarca(marca);
+    public Coche obtenerCocheByMatricula(String matricula) throws JAXBException {
+        List<Coche> listaCoches = cocheRepository.leerCochesPorMarca(matricula);
 
         for (Coche coche : listaCoches) {
-            if (coche.getMarca().equals(marca)) {
+            if (coche.getMarca().equals(matricula)) {
                 return coche;
             }
         }
         return null;
     }
-
-    public Coche obtenerCocheByModelo(String modelo) throws JAXBException {
-        List<Coche> listaCoches = cocheRepository.leerCochesPorModelo(modelo);
-
-        for (Coche coche : listaCoches) {
-            if (coche.getMarca().equals(modelo)) {
-                return coche;
-            }
-        }
-        return null;
-    }
-
 
     public void guardarCoche(@Valid Coche coche) throws JAXBException {
-        List<Coche> coches = obtenerCoches();
+        List<Coche> coches = getCoches();
         if (coches == null) {
             coches = new ArrayList<>();
         }

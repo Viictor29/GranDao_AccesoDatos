@@ -1,12 +1,11 @@
 package org.example.grandao.controller;
 
 import jakarta.validation.Valid;
-import org.example.grandao.dtos.Equipo;
-import org.example.grandao.dtos.Jugador;
-import org.example.grandao.dtos.Partido;
-import org.example.grandao.dtos.Torneo;
+import jakarta.xml.bind.JAXBException;
+import org.example.grandao.dtos.*;
 import org.example.grandao.service.GranDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +36,7 @@ public class GranDaoController {
      *
      * @return the equipos
      */
-// ****************** EQUIPOS ******************
+// ****************** EQUIPOS SQL ******************
     @GetMapping("/equipos")
     public ResponseEntity<List<Equipo>> getEquipos() {
         return ResponseEntity.ok(granDaoService.getEquipos());
@@ -94,7 +93,7 @@ public class GranDaoController {
      *
      * @return the jugadores
      */
-// ****************** JUGADORES ******************
+// ****************** JUGADORES SQL******************
     @GetMapping("/jugadores")
     public ResponseEntity<List<Jugador>> getJugadores() {
         return ResponseEntity.ok(granDaoService.getJugadores());
@@ -151,7 +150,7 @@ public class GranDaoController {
      *
      * @return the partidos
      */
-// ****************** PARTIDOS ******************
+// ****************** PARTIDOS SQL******************
     @GetMapping("/partidos")
     public ResponseEntity<List<Partido>> getPartidos() {
         return ResponseEntity.ok(granDaoService.getPartidos());
@@ -208,7 +207,7 @@ public class GranDaoController {
      *
      * @return the torneos
      */
-// ****************** TORNEOS ******************
+// ****************** TORNEOS SQL******************
     @GetMapping("/torneos")
     public ResponseEntity<List<Torneo>> getTorneos() {
         return ResponseEntity.ok(granDaoService.getTorneos());
@@ -259,4 +258,33 @@ public class GranDaoController {
         granDaoService.deleteTorneo(id);
         return ResponseEntity.noContent().build();
     }
+
+// ****************** COCHES XML******************
+
+
+    @GetMapping("/getCoches")
+    public ResponseEntity<List<Coche>> getCoches() throws JAXBException {
+        return ResponseEntity.ok(granDaoService.getCoches());
+    }
+
+    //GET COCHE BY MATRICULA
+    @GetMapping("/getCocheByMatricula/{matricula}")
+    @Cacheable
+    public ResponseEntity<Coche> getCocheByMatricula(@PathVariable String matricula) throws JAXBException {
+        // Llama al Service para obtener el coche por su matrícula
+        Coche coche = granDaoService.obtenerCocheByMatricula(matricula);
+        if (coche != null) {
+            return ResponseEntity.ok(coche);
+        } else {
+            return ResponseEntity.notFound().build();  // Si no se encuentra el coche, responde con 404 Not Found
+        }
+    }
+
+    @PostMapping("/postCoche")
+    public ResponseEntity<Coche> postCoche(@RequestBody @Valid Coche coche) throws JAXBException {
+        granDaoService.guardarCoche(coche);
+        return ResponseEntity.status(HttpStatus.CREATED).body(coche);
+    }
+
+
 }
