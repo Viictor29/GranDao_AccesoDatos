@@ -9,17 +9,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+/**
+ * The type Torneo controller.
+ *
+ * @deprecated
+ */
 @RestController
 @RequestMapping("/torneos")
 public class TorneoController {
 
     private final TorneoService torneoService;
 
+    /**
+     * Instantiates a new Torneo controller.
+     *
+     * @param torneoService the torneo service
+     */
     @Autowired
     public TorneoController(TorneoService torneoService) {
         this.torneoService = torneoService;
     }
 
+    /**
+     * Gets torneos.
+     *
+     * @return the torneos
+     */
     @GetMapping
     public ResponseEntity<List<Torneo>> getTorneos() {
         try {
@@ -29,6 +44,12 @@ public class TorneoController {
         }
     }
 
+    /**
+     * Gets torneo by id.
+     *
+     * @param id the id
+     * @return the torneo by id
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Torneo> getTorneoById(@PathVariable Integer id) {
         try {
@@ -38,6 +59,12 @@ public class TorneoController {
         }
     }
 
+    /**
+     * Create torneo response entity.
+     *
+     * @param torneo the torneo
+     * @return the response entity
+     */
     @PostMapping("torneo")
     public ResponseEntity<Torneo> createTorneo(@Valid @RequestBody Torneo torneo) {
         try {
@@ -47,6 +74,13 @@ public class TorneoController {
         }
     }
 
+    /**
+     * Update torneo response entity.
+     *
+     * @param id     the id
+     * @param torneo the torneo
+     * @return the response entity
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Torneo> updateTorneo(@PathVariable Integer id, @Valid @RequestBody Torneo torneo) {
         try {
@@ -56,6 +90,12 @@ public class TorneoController {
         }
     }
 
+    /**
+     * Delete torneo response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTorneo(@PathVariable Integer id) {
         try {

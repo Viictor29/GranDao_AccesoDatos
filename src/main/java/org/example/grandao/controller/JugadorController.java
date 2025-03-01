@@ -11,19 +11,33 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * The type Jugador controller.
+ *
+ * @deprecated
+ */
 @RestController
 @RequestMapping("/jugadores")
 public class JugadorController {
 
     private JugadorService jugadorService;
 
+    /**
+     * Instantiates a new Jugador controller.
+     *
+     * @param jugadorService the jugador service
+     */
     @Autowired
     public JugadorController(JugadorService jugadorService) {
         this.jugadorService = jugadorService;
     }
 
 
-
+    /**
+     * Gets jugadores.
+     *
+     * @return the jugadores
+     */
     @GetMapping
     public ResponseEntity<List<Jugador>> getJugadores() {
         try {
@@ -34,6 +48,12 @@ public class JugadorController {
         }
     }
 
+    /**
+     * Gets jugador by id.
+     *
+     * @param id the id
+     * @return the jugador by id
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Jugador> getJugadorById(@PathVariable Integer id) {
         try {
@@ -44,6 +64,12 @@ public class JugadorController {
         }
     }
 
+    /**
+     * Create jugador response entity.
+     *
+     * @param jugador the jugador
+     * @return the response entity
+     */
     @PostMapping("jugador")
     public ResponseEntity<Jugador> createJugador(@Valid @RequestBody Jugador jugador) {
         try {
@@ -55,6 +81,13 @@ public class JugadorController {
     }
 
 
+    /**
+     * Update jugador response entity.
+     *
+     * @param id      the id
+     * @param jugador the jugador
+     * @return the response entity
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Jugador> updateJugador(@PathVariable Integer id , @Valid @RequestBody Jugador jugador) {
         try {
@@ -65,6 +98,12 @@ public class JugadorController {
         }
     }
 
+    /**
+     * Delete jugador response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Jugador> deleteJugador(@PathVariable Integer id) {
         try {

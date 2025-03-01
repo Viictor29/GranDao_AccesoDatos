@@ -13,18 +13,33 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * The type Equipo controller.
+ *
+ * @deprecated
+ */
 @RestController
 @RequestMapping("/equipos")
 public class EquipoController {
 
     private EquipoService equipoService;
 
+    /**
+     * Instantiates a new Equipo controller.
+     *
+     * @param equipoService the equipo service
+     */
     @Autowired
     public EquipoController(EquipoService equipoService) {
         this.equipoService = equipoService;
     }
 
 
+    /**
+     * Gets equipos.
+     *
+     * @return the equipos
+     */
     @GetMapping
     public ResponseEntity<List<Equipo>> getEquipos() {
         try {
@@ -35,6 +50,12 @@ public class EquipoController {
         }
     }
 
+    /**
+     * Gets equipo by id.
+     *
+     * @param id the id
+     * @return the equipo by id
+     */
     @Cacheable
     @GetMapping("/{id}")
     public ResponseEntity<Equipo> getEquipoById(@PathVariable Integer id) {
@@ -46,6 +67,12 @@ public class EquipoController {
         }
     }
 
+    /**
+     * Create equipo response entity.
+     *
+     * @param equipo the equipo
+     * @return the response entity
+     */
     @PostMapping
     public ResponseEntity<Equipo> createEquipo(@Valid @RequestBody Equipo equipo) {
         Equipo equipoPersistido = equipoService.createEquipo(equipo);
@@ -53,12 +80,25 @@ public class EquipoController {
     }
 
 
+    /**
+     * Update equipo response entity.
+     *
+     * @param id     the id
+     * @param equipo the equipo
+     * @return the response entity
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Equipo> updateEquipo(@PathVariable Integer id, @Valid @RequestBody Equipo equipo) {
         Equipo equipoModificado = equipoService.updateEquipo(id, equipo);
         return ResponseEntity.ok(equipoModificado);
     }
 
+    /**
+     * Delete equipo response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Equipo> deleteEquipo(@PathVariable Integer id) {
         try {
