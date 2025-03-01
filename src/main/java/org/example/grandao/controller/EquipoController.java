@@ -5,6 +5,8 @@ import org.example.grandao.dtos.Equipo;
 import org.example.grandao.dtos.Jugador;
 import org.example.grandao.service.EquipoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +35,7 @@ public class EquipoController {
         }
     }
 
+    @Cacheable
     @GetMapping("/{id}")
     public ResponseEntity<Equipo> getEquipoById(@PathVariable Integer id) {
         try {
@@ -43,7 +46,7 @@ public class EquipoController {
         }
     }
 
-    @PostMapping("/equipo")
+    @PostMapping
     public ResponseEntity<Equipo> createEquipo(@Valid @RequestBody Equipo equipo) {
         Equipo equipoPersistido = equipoService.createEquipo(equipo);
         return ResponseEntity.status(HttpStatus.CREATED).body(equipoPersistido);

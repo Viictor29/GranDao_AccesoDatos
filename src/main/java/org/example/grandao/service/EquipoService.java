@@ -3,12 +3,14 @@ package org.example.grandao.service;
 import org.example.grandao.dtos.Equipo;
 import org.example.grandao.repository.EquipoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@CacheConfig(cacheNames = {"equipo"})
 public class EquipoService {
 
     EquipoRepository equipoRepository;
