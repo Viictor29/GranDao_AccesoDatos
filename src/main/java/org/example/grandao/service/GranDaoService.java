@@ -2,6 +2,7 @@ package org.example.grandao.service;
 
 import jakarta.validation.Valid;
 import org.example.grandao.daos.CocheXML;
+import org.example.grandao.daos.ProductoTXT;
 import org.example.grandao.dtos.*;
 import org.example.grandao.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class GranDaoService {
     private final PartidoRepository partidoRepository;
     private final TorneoRepository torneoRepository;
     private final CocheXML cocheRepository;
+    private final ProductoTXT productoTxt;
 
     /**
      * Instantiates a new Gran dao service.
@@ -36,12 +38,13 @@ public class GranDaoService {
      */
     @Autowired
     public GranDaoService(EquipoRepository equipoRepository, JugadorRepository jugadorRepository,
-                          PartidoRepository partidoRepository, TorneoRepository torneoRepository, CocheXML cocheRepository) {
+                          PartidoRepository partidoRepository, TorneoRepository torneoRepository, CocheXML cocheRepository, ProductoTXT productoTxt) {
         this.equipoRepository = equipoRepository;
         this.jugadorRepository = jugadorRepository;
         this.partidoRepository = partidoRepository;
         this.torneoRepository = torneoRepository;
         this.cocheRepository = cocheRepository;
+        this.productoTxt = new ProductoTXT("productos.txt");
     }
 
     /**
@@ -302,6 +305,20 @@ public class GranDaoService {
         }
         coches.add(coche);  // Agrega el coche
         cocheRepository.guardarCoches(coches);  // Guarda la lista actualizada
+    }
+
+    // ********************* PRODUCTOS TXT *****************
+
+    public List<Producto> obtenerTodos() {
+        return productoTxt.leerProductos();
+    }
+
+    public Producto obtenerPorId(int id) {
+        return productoTxt.buscarPorId(id);
+    }
+
+    public void agregarProducto(Producto producto) {
+        productoTxt.guardarProducto(producto);
     }
 
 
