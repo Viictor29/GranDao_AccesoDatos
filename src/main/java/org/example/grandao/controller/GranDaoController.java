@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.xml.bind.JAXBException;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Controlador global de la API.
@@ -306,4 +307,51 @@ public class GranDaoController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Producto guardado correctamente.");
     }
 
+// ****************** PRODUCTO MONGO******************
+
+    @GetMapping("/productosMongo")
+    public List<Producto> getAllProductos() {
+        return granDaoService.getAllProductosMongo();
+    }
+
+    @GetMapping("/productosMongo/{id}")
+    public ResponseEntity<Producto> getProductoById(@PathVariable String id) {
+        Producto producto = granDaoService.getProductoByIdMongo(id);
+        return producto != null ? ResponseEntity.ok(producto) : ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/productosMongo")
+    public Producto saveProducto(@RequestBody Producto producto) {
+        return granDaoService.saveProductoMongo(producto);
+    }
+
+    @DeleteMapping("/productosMongo/{id}")
+    public ResponseEntity<Void> deleteProducto(@PathVariable String id) {
+        granDaoService.deleteProductoMongo(id);
+        return ResponseEntity.noContent().build();
+    }
+
+// ****************** PEDIDO MONGO******************
+
+    @GetMapping("/pedidosMongo")
+    public List<Pedido> getAllPedidos() {
+        return granDaoService.getAllPedidosMongo();
+    }
+
+    @GetMapping("/pedidosMongo/{id}")
+    public ResponseEntity<Pedido> getPedidoById(@PathVariable String id) {
+        Pedido pedido = granDaoService.getPedidoByIdMongo(id);
+        return pedido != null ? ResponseEntity.ok(pedido) : ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/pedidosMongo")
+    public Pedido savePedido(@RequestBody Pedido pedido) {
+        return granDaoService.savePedidoMongo(pedido);
+    }
+
+    @DeleteMapping("/pedidosMongo/{id}")
+    public ResponseEntity<Void> deletePedido(@PathVariable String id) {
+        granDaoService.deletePedidoMongo(id);
+        return ResponseEntity.noContent().build();
+    }
 }
