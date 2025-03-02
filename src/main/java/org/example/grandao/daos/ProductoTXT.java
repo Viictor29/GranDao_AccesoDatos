@@ -2,15 +2,14 @@ package org.example.grandao.daos;
 
 import java.io.*;
 import java.util.*;
-import java.util.stream.Collectors;
 import org.example.grandao.dtos.Producto;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ProductoTXT {
-    private final String archivo;
+    private final String archivo = "productos.txt";
 
-    public ProductoTXT(String archivo) {
-        this.archivo = archivo;
-    }
+    public ProductoTXT() {}
 
     public List<Producto> leerProductos() {
         List<Producto> productos = new ArrayList<>();
