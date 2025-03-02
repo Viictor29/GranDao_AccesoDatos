@@ -44,7 +44,7 @@ public class GranDaoService {
         this.partidoRepository = partidoRepository;
         this.torneoRepository = torneoRepository;
         this.cocheRepository = cocheRepository;
-        this.productoTxt = new ProductoTXT("productos.txt");
+        this.productoTxt = new ProductoTXT();
     }
 
     /**
