@@ -30,4 +30,9 @@
         <matricula>8710-FBP</matricula>
         <modelo>Focus</modelo>
     </coche>
+    <coche>
+        <marca>Ford</marca>
+        <matricula>1234</matricula>
+        <modelo>Focus</modelo>
+    </coche>
 </coches>

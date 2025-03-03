@@ -3,3 +3,4 @@
 103,Monitor 24 Pulgadas,15
 104,Portatil Gaming,8
 105,Auriculares Bluetooth,30
+106,Gafas realidad virtual,599.0

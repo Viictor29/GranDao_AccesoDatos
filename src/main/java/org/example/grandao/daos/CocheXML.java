@@ -49,45 +49,24 @@ public class CocheXML {
     }
 
     /**
-     * Leer coches por marca list.
+     * Leer coches por matricula list.
      *
-     * @param marca the marca
+     * @param matricula the marca
      * @return the list
      * @throws JAXBException the jaxb exception
      */
-    public List<Coche> leerCochesPorMarca(String marca) throws JAXBException {
+    public List<Coche> leerCochesPorMatricula(String matricula) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(CochesList.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         CochesList wrapper = (CochesList) unmarshaller.unmarshal(new File(archivo));
 
-        List<Coche> cochesFiltradosMarca = new ArrayList<>();
+        List<Coche> cochesFiltradosMatricula = new ArrayList<>();
         for (Coche coche : wrapper.getCoches()) {
-            if (coche.getMarca().equals(marca)) {
-                cochesFiltradosMarca.add(coche);
+            if (coche.getMarca().equals(matricula)) {
+                cochesFiltradosMatricula.add(coche);
             }
         }
-        return cochesFiltradosMarca;
-    }
-
-    /**
-     * Leer coches por modelo list.
-     *
-     * @param modelo the modelo
-     * @return the list
-     * @throws JAXBException the jaxb exception
-     */
-    public List<Coche> leerCochesPorModelo(String modelo) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(CochesList.class);
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        CochesList wrapper = (CochesList) unmarshaller.unmarshal(new File(archivo));
-
-        List<Coche> cochesFiltradosModelo = new ArrayList<>();
-        for (Coche coche : wrapper.getCoches()) {
-            if (coche.getMarca().equals(modelo)) {
-                cochesFiltradosModelo.add(coche);
-            }
-        }
-        return cochesFiltradosModelo;
+        return cochesFiltradosMatricula;
     }
 
 }

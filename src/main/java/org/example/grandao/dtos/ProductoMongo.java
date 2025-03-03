@@ -23,5 +23,14 @@ public class ProductoMongo {
     public void setNombre(String nombre) { this.nombre = nombre; }
     public double getPrecio() { return precio; }
     public void setPrecio(double precio) { this.precio = precio; }
+
+    @Override
+    public String toString() {
+        return "ProductoMongo{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                '}';
+    }
 }
 

@@ -27,8 +27,8 @@ public class GranDaoService {
     private final TorneoRepository torneoRepository;
     private final CocheXML cocheRepository;
     private final ProductoTXT productoTxt;
-    private final PedidoRepository pedidoRepository;
-    private final ProductoRepository productoRepository;
+    private final PedidoRepositoryMongo pedidoRepository;
+    private final ProductoRepositoryMongo productoRepository;
 
     /**
      * Instantiates a new Gran dao service.
@@ -43,7 +43,7 @@ public class GranDaoService {
      */
     @Autowired
     public GranDaoService(EquipoRepository equipoRepository, JugadorRepository jugadorRepository,
-                          PartidoRepository partidoRepository, TorneoRepository torneoRepository, CocheXML cocheRepository, PedidoRepository pedidoRepository, ProductoRepository productoRepository) {
+                          PartidoRepository partidoRepository, TorneoRepository torneoRepository, CocheXML cocheRepository, PedidoRepositoryMongo pedidoRepository, ProductoRepositoryMongo productoRepository) {
         this.equipoRepository = equipoRepository;
         this.jugadorRepository = jugadorRepository;
         this.partidoRepository = partidoRepository;
@@ -295,7 +295,7 @@ public class GranDaoService {
     }
 
     public Coche obtenerCocheByMatricula(String matricula) throws JAXBException {
-        List<Coche> listaCoches = cocheRepository.leerCochesPorMarca(matricula);
+        List<Coche> listaCoches = cocheRepository.leerCochesPorMatricula(matricula);
 
         for (Coche coche : listaCoches) {
             if (coche.getMarca().equals(matricula)) {
@@ -330,37 +330,19 @@ public class GranDaoService {
 
     // ********************* PRODUCTO MONGODB *****************
 
-    public List<Producto> getAllProductosMongo() {
+    public List<ProductoMongo> getAllProductosMongo() {
         return productoRepository.findAll();
     }
 
-    public Producto getProductoByIdMongo(String id) {
+    public ProductoMongo getProductoByIdMongo(String id) {
         return productoRepository.findById(id).orElseThrow(() -> new RuntimeException("Producto no encontrado"));
     }
 
-    public Producto saveProductoMongo(Producto producto) {
-        return productoRepository.save(producto);
+    public ProductoMongo saveProductoMongo(ProductoMongo productoMongo) {
+        return productoRepository.save(productoMongo);
     }
 
     public void deleteProductoMongo(String id) {
         productoRepository.deleteById(id);
-    }
-
-    // ********************* PEDIDO MONGODB *****************
-
-    public List<Pedido> getAllPedidosMongo() {
-        return pedidoRepository.findAll();
-    }
-
-    public Pedido getPedidoByIdMongo(String id) {
-        return pedidoRepository.findById(id).orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
-    }
-
-    public Pedido savePedidoMongo(Pedido pedido) {
-        return pedidoRepository.save(pedido);
-    }
-
-    public void deletePedidoMongo(String id) {
-        pedidoRepository.deleteById(id);
     }
 }
