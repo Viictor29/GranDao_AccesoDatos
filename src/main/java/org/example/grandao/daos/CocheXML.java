@@ -62,7 +62,7 @@ public class CocheXML {
 
         List<Coche> cochesFiltradosMatricula = new ArrayList<>();
         for (Coche coche : wrapper.getCoches()) {
-            if (coche.getMarca().equals(matricula)) {
+            if (coche.getMatricula().equals(matricula)) {
                 cochesFiltradosMatricula.add(coche);
             }
         }

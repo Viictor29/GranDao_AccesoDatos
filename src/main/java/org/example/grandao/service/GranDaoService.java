@@ -295,7 +295,7 @@ public class GranDaoService {
         List<Coche> listaCoches = cocheRepository.leerCochesPorMatricula(matricula);
 
         for (Coche coche : listaCoches) {
-            if (coche.getMarca().equals(matricula)) {
+            if (coche.getMatricula().equals(matricula)) {
                 return coche;
             }
         }
