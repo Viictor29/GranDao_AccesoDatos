@@ -4,3 +4,4 @@
 104,Portatil Gaming,8
 105,Auriculares Bluetooth,30
 106,Gafas realidad virtual,599.0
+107,Monitor MSI,350.0

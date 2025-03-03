@@ -308,20 +308,28 @@ public class GranDaoController {
 // ****************** PRODUCTO MONGO******************
 
     @GetMapping("/productosMongo")
-    public List<ProductoMongo> getAllProductos() {
-        return granDaoService.getAllProductosMongo();
+    public ResponseEntity<List<ProductoMongo>> obtenerTodasLasCiudades() {
+        return ResponseEntity.ok(granDaoService.getAllProductosMongo());
     }
+
 
     @GetMapping("/productosMongo/{id}")
     public ResponseEntity<ProductoMongo> getProductoById(@PathVariable String id) {
-        ProductoMongo productoMongo = granDaoService.getProductoByIdMongo(id);
-        return productoMongo != null ? ResponseEntity.ok(productoMongo) : ResponseEntity.notFound().build();
+        return ResponseEntity.ok(granDaoService.getProductoByIdMongo(id));
     }
 
+
     @PostMapping("/productosMongo")
-    public ProductoMongo saveProducto(@RequestBody ProductoMongo productoMongo) {
-        return granDaoService.saveProductoMongo(productoMongo);
+    public ResponseEntity<ProductoMongo> saveProducto(@RequestBody ProductoMongo productoMongo) {
+        return ResponseEntity.ok(granDaoService.saveProductoMongo(productoMongo));
     }
+
+    @PutMapping("productosMongo/{id}")
+    public ResponseEntity<ProductoMongo> actualizarProducto(@PathVariable String id, @RequestBody ProductoMongo productoMongo) {
+        productoMongo.setId(id); // Asegurar que el ID coincida
+        return ResponseEntity.ok().body(granDaoService.saveProductoMongo(productoMongo));
+    }
+
 
     @DeleteMapping("/productosMongo/{id}")
     public ResponseEntity<String> deleteProducto(@PathVariable String id) {

@@ -27,7 +27,6 @@ public class GranDaoService {
     private final TorneoRepository torneoRepository;
     private final CocheXML cocheRepository;
     private final ProductoTXT productoTxt;
-    private final PedidoRepositoryMongo pedidoRepository;
     private final ProductoRepositoryMongo productoRepository;
 
     /**
@@ -38,18 +37,16 @@ public class GranDaoService {
      * @param partidoRepository the partido repository
      * @param torneoRepository  the torneo repository
      * @param productoRepository the productoMongoDB repository
-     * @param pedidoRepository the pedidoMongoDB repository
      * @param cocheRepository the coche Repository
      */
     @Autowired
     public GranDaoService(EquipoRepository equipoRepository, JugadorRepository jugadorRepository,
-                          PartidoRepository partidoRepository, TorneoRepository torneoRepository, CocheXML cocheRepository, PedidoRepositoryMongo pedidoRepository, ProductoRepositoryMongo productoRepository) {
+                          PartidoRepository partidoRepository, TorneoRepository torneoRepository, CocheXML cocheRepository, ProductoRepositoryMongo productoRepository) {
         this.equipoRepository = equipoRepository;
         this.jugadorRepository = jugadorRepository;
         this.partidoRepository = partidoRepository;
         this.torneoRepository = torneoRepository;
         this.cocheRepository = cocheRepository;
-        this.pedidoRepository = pedidoRepository;
         this.productoRepository = productoRepository;
         this.productoTxt = new ProductoTXT();
     }
