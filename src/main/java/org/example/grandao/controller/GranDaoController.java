@@ -237,7 +237,7 @@ public class GranDaoController {
     /**
      * Update torneo response entity.
      *
-     * @param id id del torneo
+     * @param id     id del torneo
      * @param torneo el torneo
      * @return the response entity
      */
@@ -260,6 +260,12 @@ public class GranDaoController {
 
 // ****************** COCHES XML******************
 
+    /**
+     * Gets coches.
+     *
+     * @return the coches
+     * @throws JAXBException the jaxb exception
+     */
     @GetMapping("/coches")
     public ResponseEntity<CochesList> getCoches() throws JAXBException {
         List<Coche> coches = granDaoService.getCoches();  // Obtienes la lista de coches
@@ -267,7 +273,14 @@ public class GranDaoController {
         return ResponseEntity.ok(cochesList);  // Devuelves el objeto CochesList
     }
 
-    //GET COCHE BY MATRICULA
+    /**
+     * Obtener coche by matricula response entity.
+     *
+     * @param matricula the matricula
+     * @return the response entity
+     * @throws JAXBException the jaxb exception
+     */
+//GET COCHE BY MATRICULA
     @GetMapping("/coches/{matricula}")
     public ResponseEntity<Coche> obtenerCocheByMatricula(@PathVariable String matricula) throws JAXBException {
         // Llama al Service para obtener el coche por su matrícula
@@ -279,6 +292,13 @@ public class GranDaoController {
         }
     }
 
+    /**
+     * Post coche response entity.
+     *
+     * @param coche the coche
+     * @return the response entity
+     * @throws JAXBException the jaxb exception
+     */
     @PostMapping("/coches")
     public ResponseEntity<Coche> postCoche(@RequestBody @Valid Coche coche) throws JAXBException {
         granDaoService.guardarCoche(coche);
@@ -287,18 +307,35 @@ public class GranDaoController {
 
 // ****************** PRODUCTOS TXT******************
 
+    /**
+     * Gets productos.
+     *
+     * @return the productos
+     */
     @GetMapping("/productos")
     public ResponseEntity<List<Producto>> getProductos() {
         return ResponseEntity.ok(granDaoService.obtenerTodos());
     }
 
 
+    /**
+     * Gets producto by id.
+     *
+     * @param id the id
+     * @return the producto by id
+     */
     @GetMapping("/productos/{id}")
     public ResponseEntity<Producto> getProductoById(@PathVariable int id) {
         Producto producto = granDaoService.obtenerPorId(id);
         return producto != null ? ResponseEntity.ok(producto) : ResponseEntity.notFound().build();
     }
 
+    /**
+     * Crear producto response entity.
+     *
+     * @param producto the producto
+     * @return the response entity
+     */
     @PostMapping("/productos")
     public ResponseEntity<String> crearProducto(@RequestBody Producto producto) {
         granDaoService.agregarProducto(producto);
@@ -307,23 +344,47 @@ public class GranDaoController {
 
 // ****************** PRODUCTO MONGO******************
 
+    /**
+     * Obtener todas las ciudades response entity.
+     *
+     * @return the response entity
+     */
     @GetMapping("/productosMongo")
     public ResponseEntity<List<ProductoMongo>> obtenerTodasLasCiudades() {
         return ResponseEntity.ok(granDaoService.getAllProductosMongo());
     }
 
 
+    /**
+     * Gets producto by id.
+     *
+     * @param id the id
+     * @return the producto by id
+     */
     @GetMapping("/productosMongo/{id}")
     public ResponseEntity<ProductoMongo> getProductoById(@PathVariable String id) {
         return ResponseEntity.ok(granDaoService.getProductoByIdMongo(id));
     }
 
 
+    /**
+     * Save producto response entity.
+     *
+     * @param productoMongo the producto mongo
+     * @return the response entity
+     */
     @PostMapping("/productosMongo")
     public ResponseEntity<ProductoMongo> saveProducto(@RequestBody ProductoMongo productoMongo) {
         return ResponseEntity.ok(granDaoService.saveProductoMongo(productoMongo));
     }
 
+    /**
+     * Actualizar producto response entity.
+     *
+     * @param id            the id
+     * @param productoMongo the producto mongo
+     * @return the response entity
+     */
     @PutMapping("productosMongo/{id}")
     public ResponseEntity<ProductoMongo> actualizarProducto(@PathVariable String id, @RequestBody ProductoMongo productoMongo) {
         productoMongo.setId(id); // Asegurar que el ID coincida
@@ -331,6 +392,12 @@ public class GranDaoController {
     }
 
 
+    /**
+     * Delete producto response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @DeleteMapping("/productosMongo/{id}")
     public ResponseEntity<String> deleteProducto(@PathVariable String id) {
         granDaoService.deleteProductoMongo(id);
