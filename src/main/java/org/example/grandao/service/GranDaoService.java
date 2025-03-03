@@ -32,12 +32,12 @@ public class GranDaoService {
     /**
      * Instantiates a new Gran dao service.
      *
-     * @param equipoRepository  the equipo repository
-     * @param jugadorRepository the jugador repository
-     * @param partidoRepository the partido repository
-     * @param torneoRepository  the torneo repository
+     * @param equipoRepository   the equipo repository
+     * @param jugadorRepository  the jugador repository
+     * @param partidoRepository  the partido repository
+     * @param torneoRepository   the torneo repository
+     * @param cocheRepository    the coche Repository
      * @param productoRepository the productoMongoDB repository
-     * @param cocheRepository the coche Repository
      */
     @Autowired
     public GranDaoService(EquipoRepository equipoRepository, JugadorRepository jugadorRepository,
@@ -287,10 +287,23 @@ public class GranDaoService {
 
     // ****************** COCHES XML ******************
 
+    /**
+     * Gets coches.
+     *
+     * @return the coches
+     * @throws JAXBException the jaxb exception
+     */
     public List<Coche> getCoches() throws JAXBException{
         return cocheRepository.leerCoches();
     }
 
+    /**
+     * Obtener coche by matricula coche.
+     *
+     * @param matricula the matricula
+     * @return the coche
+     * @throws JAXBException the jaxb exception
+     */
     public Coche obtenerCocheByMatricula(String matricula) throws JAXBException {
         List<Coche> listaCoches = cocheRepository.leerCochesPorMatricula(matricula);
 
@@ -302,6 +315,12 @@ public class GranDaoService {
         return null;
     }
 
+    /**
+     * Guardar coche.
+     *
+     * @param coche the coche
+     * @throws JAXBException the jaxb exception
+     */
     public void guardarCoche(@Valid Coche coche) throws JAXBException {
         List<Coche> coches = getCoches();
         if (coches == null) {
@@ -313,32 +332,71 @@ public class GranDaoService {
 
     // ********************* PRODUCTOS TXT *****************
 
+    /**
+     * Obtener todos list.
+     *
+     * @return the list
+     */
     public List<Producto> obtenerTodos() {
         return productoTxt.leerProductos();
     }
 
+    /**
+     * Obtener por id producto.
+     *
+     * @param id the id
+     * @return the producto
+     */
     public Producto obtenerPorId(int id) {
         return productoTxt.buscarPorId(id);
     }
 
+    /**
+     * Agregar producto.
+     *
+     * @param producto the producto
+     */
     public void agregarProducto(Producto producto) {
         productoTxt.guardarProducto(producto);
     }
 
     // ********************* PRODUCTO MONGODB *****************
 
+    /**
+     * Gets all productos mongo.
+     *
+     * @return the all productos mongo
+     */
     public List<ProductoMongo> getAllProductosMongo() {
         return productoRepository.findAll();
     }
 
+    /**
+     * Gets producto by id mongo.
+     *
+     * @param id the id
+     * @return the producto by id mongo
+     * @throws RuntimeException to avoid NullPointer
+     */
     public ProductoMongo getProductoByIdMongo(String id) {
         return productoRepository.findById(id).orElseThrow(() -> new RuntimeException("Producto no encontrado"));
     }
 
+    /**
+     * Save producto mongo producto mongo.
+     *
+     * @param productoMongo the producto mongo
+     * @return the producto mongo updated
+     */
     public ProductoMongo saveProductoMongo(ProductoMongo productoMongo) {
         return productoRepository.save(productoMongo);
     }
 
+    /**
+     * Delete producto mongo.
+     *
+     * @param id the id to delete
+     */
     public void deleteProductoMongo(String id) {
         productoRepository.deleteById(id);
     }
